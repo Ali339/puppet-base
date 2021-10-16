@@ -1,5 +1,5 @@
 class base inherits base::params {
-    package { [ 'tree','wget','unzip','git' ]: }
+    package { [ 'tree','wget','unzip','ntp','git' ]: }
     user { 'deploy':
             ensure => present,
             uid         => '5000',
@@ -12,8 +12,8 @@ class base inherits base::params {
         'dojo':
         ensure => absent, 
     }
-   # service { $::base::ntp_service:
-   #        ensure => running,
+    service { $::base::ntp_service:
+            ensure => running,
     }
     file { '/etc/motd':
         ensure => 'file',
